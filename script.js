@@ -1,16 +1,34 @@
-// get container element
-// create 16 divs
-// set width and height of each div
-// put them in container
-
 const container = document.querySelector('.container');
-const squares = [];
+const gridBtn = document.querySelector('#grid-btn');
+let squares = [];
 
-for (let i = 0; i < 16*16; i++) {
-    squares[i] = document.createElement('div');
-    squares[i].style.border = '1px solid black';
-    squares[i].addEventListener('mouseenter', function() {
-        this.style.backgroundColor = 'black';
-    });
-    container.appendChild(squares[i]);
+function createGrid(size) {
+    for (let i = 0; i < size * size; i++) {
+        squares[i] = document.createElement('div');
+        squares[i].addEventListener('mouseenter', function() {
+            this.style.backgroundColor = 'black';
+        });
+        container.appendChild(squares[i]);
+    }
+    container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+    container.style.gridTemplateRows = `repeat(${size}, 1fr)`;
 }
+
+function removeGrid() {
+    for (let i = 0; i < squares.length; i++) {
+        squares[i].remove();
+    }
+}
+
+createGrid(16);
+
+gridBtn.addEventListener('click', () => {
+    let size = +prompt('enter number of squares per side: ');
+    if (size <= 0 || size > 100 || isNaN(size)) {
+        alert('invalid value');
+        return;
+    }
+    removeGrid();
+    squares = [];
+    createGrid(size);
+});
