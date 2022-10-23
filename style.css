@@ -5,17 +5,32 @@ body {
     align-items: center;
     gap: 20px;
     height: 100vh;
+    font-family: sans-serif;
+}
+
+.modes {
+    width: 600px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-block: 1rem;
 }
 
 .container {
     display: grid;
     grid-template-columns: repeat(16, 1fr);
     grid-template-rows: repeat(16, 1fr);
-    width: 700px;
-    height: 700px;
+    width: 600px;
+    height: 600px;
     border: 1px solid black;
 }
 
 div {
     box-sizing: border-box;
+}
+
+#grid-btn {
+    font-size: 1rem;
+    padding: 0.5rem;
 }
